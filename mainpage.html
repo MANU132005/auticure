@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutiCure - Supporting Autism Spectrum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      color: #e8e0e0;
+      min-height: 100vh;
+      position: relative;
+      background-color: #0e0c0c;
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 20px;
+      z-index: 1001;
+      display: flex;
+      gap: 20px;
+    }
+
+    .top-nav a {
+      color: #f1eaea;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .top-nav a:hover {
+      color: #db911140;
+      transform: translateY(-2px);
+    }
+
+    /* Logo Container - Updated with larger logo size */
+    .logo-container {
+      position: fixed;
+      top: 10px;
+      left: 15px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      height: 100px; /* Increased from 60px */
+      width: auto;
+      animation: pulse 2s infinite alternate;
+    }
+
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #f2e9e9;
+      text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+    ;
+    }
+
+    .logo-tagline {
+      font-size: 0.9rem;
+      color: #f1ebeb;
+      opacity: 0.8;
+    }
+
+    /* Background container */
+    .background-container {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Top section with background image - extended to cover vision section */
+    .top-section {
+      background-image: url('https://www.itl.cat/pngfile/big/47-470148_landscape-portrait-colorful-background-iphone.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+      padding-bottom: 60px;
+    }
+
+    /* Overlay for better text readability */
+    .top-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(30, 29, 29, 0.7);
+      z-index: 0;
+    }
+
+    /* Content container aligned to left */
+    .content-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Animations */
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Content aligned to left */
+    .content {
+      padding: 120px 0 60px;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .main-heading {
+      font-size: 3.5rem;
+      margin-bottom: 30px;
+      color: #f5edea;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    
+      padding: 20px;
+      border-radius: 10px;
+      color: #f4ebeb;
+      animation: fadeIn 2s ease-out;
+      border-left: 4px solid #0e0e0e;
+    }
+
+    /* What is Autism section */
+    .info-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .info-section h2 {
+      font-size: 2.5rem;
+      color: #f1f1ea;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .info-section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #000000;
+      color: #f8f0f0;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #4CAF50;
+      color: rgb(250, 247, 247);
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      animation: fadeIn 2.5s ease-out;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-button:hover {
+      background: #45a049;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Transition effect between sections */
+    .transition-curve {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: #5a5050;
+      clip-path: ellipse(100% 100% at 50% 100%);
+      z-index: 1;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Unified section styling for both features and partner sections */
+    .featured-section {
+      
+      padding: 40px;
+      border-radius: 15px;
+      color: white;
+      margin: 60px 0;
+      
+    
+    }
+    
+    .featured-section h2 {
+      color: #f5f3fe;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .featured-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: #4CAF50;
+    }
+    
+    /* Game Features Section */
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    
+    .feature-card {
+      
+      border-radius: 10px;
+      padding: 20px;
+      width: calc(33% - 20px);
+      min-width: 250px;
+      border-top: 3px solid #e9dede;
+      transition: transform 0.3s ease;
+      
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+    
+    }
+    
+    .feature-card h3 {
+      color: #4CAF50;
+      margin-top: 0;
+    }
+
+    /* Partner Section */
+    .partner-logo {
+      max-width: 200px;
+      margin: 20px auto;
+      display: block;
+      filter: brightness(0) invert(0.3);
+    }
+    
+    .partner-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      text-align: left;
+      color: #faefef;
+    }
+    
+    .partner-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .partner-highlight {
+      
+      padding: 20px;
+      border-radius: 10px;
+      width: calc(33% - 20px);
+      min-width: 250px;
+      border-left: 4px solid #4CAF50;
+      
+    }
+    
+    .partner-highlight h4 {
+      color: #4CAF50;
+      margin-top: 0;
+    }
+
+    /* Vision Section - now part of top-section with background */
+    .vision-section {
+    
+      padding: 40px;
+      border-radius: 15px;
+      margin: 60px 0;
+      
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .vision-section h2 {
+      color: #ebf7ec;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .vision-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .vision-point {
+      flex: 1;
+      min-width: 250px;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid #f2f3f2;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .vision-point i {
+      color: #4CAF50;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    
+    /* About Us Section */
+    .about-section {
+      
+      padding: 40px;
+      border-radius: 15px;
+      color: white;
+      margin: 60px 0;
+      
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .about-section h2 {
+      color: #ffffff;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .about-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: #4CAF50;
+    }
+    
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+    }
+    
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .video-container {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      
+    }
+
+    /* Bottom section - now with light background */
+    .bottom-section {
+      background: #f9f9f9;
+      padding: 80px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .logo-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      .logo-img {
+        height: 80px; /* Increased from 50px */
+      }
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      .logo-tagline {
+        font-size: 0.8rem;
+      }
+      .main-heading {
+        font-size: 2.5rem;
+      }
+      .content {
+        padding: 100px 20px 40px;
+        max-width: 100%;
+      }
+      .content-container {
+        padding: 0 20px;
+      }
+      .top-nav {
+        padding: 15px;
+        gap: 15px;
+      }
+      .info-section h2 {
+        font-size: 2rem;
+      }
+      .feature-card, .partner-highlight {
+        width: 100%;
+      }
+      .featured-section, .vision-section, .about-section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Links -->
+  <div class="top-nav">
+    <a href="#signin"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+    <a href="./chatbot.html"><i class="fas fa-question-circle"></i> FAQ</a>
+    <a href="./orderdetails.html"><i class="fas fa-mobile-alt"></i> Get App</a>
+  </div>
+
+  <!-- Logo Container at Top Left - Now with larger logo -->
+  <div class="logo-container">
+    <img src="./AutiCure_Logo-removebg-preview.png" alt="AutiCure Logo" class="logo-img">
+    <div>
+      <div class="logo-text">AutiCure</div>
+      <div class="logo-tagline">Supporting Autism Spectrum</div>
+    </div>
+  </div>
+
+  <div class="background-container">
+    <!-- Extended top section with background image -->
+    <div class="top-section">
+      <!-- Main Content - Left-aligned -->
+      <div class="content-container">
+        <div class="content">
+          <h1 class="main-heading">Evolving Individuals with Autism</h1>
+          <p class="description">
+            AutiCure is dedicated to providing innovative solutions and support for individuals on the autism spectrum. 
+            Our mission is to create tools and resources that help with communication, learning, and daily life skills, 
+            making the world more accessible for everyone.
+          </p>
+          <a href="./learnmore.html" class="cta-button">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Content container for all sections up to vision -->
+      <div class="content-container">
+        <!-- What is Autism Section -->
+        <div class="info-section">
+          <h2>What is Autism?</h2>
+          <p>Autism spectrum disorders (ASD) are a diverse group of conditions related to brain development. They 
+          are characterized by difficulties in social interaction and communication, as well as atypical patterns of 
+          behavior, such as repetitive activities or unusual reactions to sensations. The abilities and needs of 
+          individuals with autism can vary widely, and while some can live independently, others may require 
+          lifelong care and support. For better understanding, Autism is a Spectrum Disorder or disability. People with autism often lack 
+          understanding skills, meaning their mind develops differently. They have repetitive behaviors, experience anger 
+          issues, and can easily get triggered when facing discomfort. They often struggle with communication skills. 
+          They are individuals who need rigorous therapy and treatment to become ready for society or at least 
+          independent.</p>
+        </div>
+        
+        <!-- AutiCure Section -->
+        <div class="info-section">
+          <h2>AutiCure</h2>
+          <p>Keeping in mind the sensory sensitivities and the various spectrums, we have decided to develop a game 
+          named Autism Allies which addresses all the requirements of individuals according to their 
+          customization. Autism Allies is an innovative first-person game designed to train individuals 
+          with autism. This game provides an engaging gaming experience with therapy included. It's a highly 
+          customizable game that ensures user safety and comfort, designed to meet the 
+          unique needs and preferences of each player.</p>
+        </div>
+        
+        <!-- Game Features Section -->
+        <div class="featured-section">
+          <h2>Key Features of Autism Allies</h2>
+          <div class="feature-list">
+            <div class="feature-card">
+              <h3><i class="fas fa-sliders-h"></i> Full Customization</h3>
+              <p>Customize every aspect of the game environment, characters, and audio to match individual preferences and sensory needs.</p>
+            </div>
+            <div class="feature-card">
+              <h3><i class="fas fa-gamepad"></i> Therapeutic Mini-Games</h3>
+              <p>Engaging activities designed to develop cognitive skills, communication, and daily living abilities.</p>
+            </div>
+            <div class="feature-card">
+              <h3><i class="fas fa-life-ring"></i> Life Skills Simulation</h3>
+              <p>Practice essential daily activities in a safe, virtual environment before applying them in real life.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- About Us Section -->
+        <div class="about-section">
+          <h2>About Us</h2>
+          <div class="about-content">
+            <div class="about-text">
+              <p>AutiCure was founded by a team of passionate developers, therapists, and autism advocates who recognized the need for innovative tools to support individuals on the autism spectrum.</p>
+              <p>Our team combines expertise in game development, behavioral therapy, and special education to create engaging, therapeutic experiences that make a real difference in people's lives.</p>
+              <p>We believe in a world where individuals with autism have the tools and support they need to thrive. Our mission is to create accessible, customizable solutions that empower people with autism to develop essential life skills in a safe, comfortable environment.</p>
+              <p>Watch our introduction video to learn more about our team, our approach, and our vision for the future of autism support.</p>
+            </div>
+            <div class="video-container">
+              <!-- Replace the YouTube video ID with your actual video ID -->
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Our Vision Section - now part of the top-section -->
+        <div class="vision-section">
+          <h2>Our Vision</h2>
+          <div class="vision-points">
+            <div class="vision-point">
+              <i class="fas fa-trophy"></i>
+              <h3>Development Over Winning</h3>
+              <p>The game is not about winning or losing - it's about the amount of development seen in the player's behavior. The game continues as long as the character makes correct choices.</p>
+            </div>
+            <div class="vision-point">
+              <i class="fas fa-hands-helping"></i>
+              <h3>Guided Learning</h3>
+              <p>If choices are wrong in the simulation, the in-game guardian provides commands to guide the player toward the right path, ensuring continuous learning.</p>
+            </div>
+            <div class="vision-point">
+              <i class="fas fa-gift"></i>
+              <h3>Positive Reinforcement</h3>
+              <p>Correct choices are rewarded with preferred items like candies or chocolates. No matter how small the achievement, every positive choice is celebrated to encourage and motivate.</p>
+            </div>
+          </div>
+          <p style="text-align: center; margin-top: 30px; font-style: italic;">
+            Our vision is to create a safe, encouraging environment where every small step forward is recognized and celebrated, building confidence and independence.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Transition curve moved to after vision section -->
+      <div class="transition-curve"></div>
+    </div>
+
+    <!-- Bottom section with light background -->
+    <div class="bottom-section">
+      <div class="content-container">
+        <!-- Any additional content that should have the light background goes here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Additional animation for logo on hover
+    const logo = document.querySelector('.logo-img');
+    logo.addEventListener('mouseover', () => {
+      logo.style.animation = 'pulse 0.5s infinite alternate';
+    });
+    logo.addEventListener('mouseout', () => {
+      logo.style.animation = 'pulse 2s infinite alternate';
+    });
+  </script>
+</body>
+</html>

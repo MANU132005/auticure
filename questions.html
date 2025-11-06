@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autism Profile Questionnaire | AutiCure</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      min-height: 100vh;
+      position: relative;
+      background-color: #f9f9f9;
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 20px;
+      z-index: 1001;
+      display: flex;
+      gap: 20px;
+    }
+
+    .top-nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .top-nav a:hover {
+      color: #4CAF50;
+      transform: translateY(-2px);
+    }
+
+    /* Logo Container */
+    .logo-container {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      height: 80px;
+      width: auto;
+      animation: pulse 2s infinite alternate;
+    }
+
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #4CAF50;
+      text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .logo-tagline {
+      font-size: 0.9rem;
+      color: #333;
+      opacity: 0.8;
+    }
+
+    /* Background container */
+    .background-container {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Top section with background image */
+    .top-section {
+      background-image: url('https://www.itl.cat/pngfile/big/47-470148_landscape-portrait-colorful-background-iphone.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+      padding-bottom: 60px;
+      min-height: 100vh;
+    }
+
+    /* Overlay for better text readability */
+    .top-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      z-index: 0;
+    }
+
+    /* Content container aligned to left */
+    .content-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Animations */
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Content aligned to left */
+    .content {
+      padding: 120px 0 60px;
+      max-width: 800px;
+      text-align: left;
+    }
+
+    .main-heading {
+      font-size: 3.5rem;
+      margin-bottom: 30px;
+      color: #2c3e50;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      color: #333;
+      animation: fadeIn 2s ease-out;
+      border-left: 4px solid #4CAF50;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Questionnaire Styles */
+    .questionnaire-form {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      border-left: 4px solid #4CAF50;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      max-width: 800px;
+      margin: 40px auto;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #2c3e50;
+      font-size: 1.1rem;
+    }
+
+    .form-group .question-text {
+      font-weight: bold;
+      color: #2980b9;
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+
+    .form-group .question-note {
+      font-style: italic;
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .submit-btn:hover {
+      background: #45a049;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .logo-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      .logo-img {
+        height: 65px;
+      }
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      .logo-tagline {
+        font-size: 0.8rem;
+      }
+      .main-heading {
+        font-size: 2.5rem;
+      }
+      .content {
+        padding: 100px 20px 40px;
+        max-width: 100%;
+      }
+      .content-container {
+        padding: 0 20px;
+      }
+      .top-nav {
+        padding: 15px;
+        gap: 15px;
+      }
+      .questionnaire-form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Links -->
+  <div class="top-nav">
+    <a href="#signin"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+    <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+    <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+  </div>
+
+  <!-- Logo Container at Top Left -->
+  <div class="logo-container">
+    <img src="./AutiCure_Logo-removebg-preview.png" alt="AutiCure Logo" class="logo-img">
+    <div>
+      <div class="logo-text">AutiCure</div>
+      <div class="logo-tagline">Supporting Autism Spectrum</div>
+    </div>
+  </div>
+
+  <div class="background-container">
+    <!-- Top section with background image -->
+    <div class="top-section">
+      <!-- Main Content - Left-aligned -->
+      <div class="content-container">
+        <div class="content">
+          <h1 class="main-heading">Autism Profile Questionnaire</h1>
+          <p class="description">
+            Please answer these questions to help us understand your child's needs better. This information will help us create personalized support through our Autism Allies game.
+          </p>
+          
+          <div class="questionnaire-form">
+            <form id="autismQuestionnaire">
+              <!-- Question 1 -->
+              <div class="form-group">
+                <div class="question-text">1. What are your child's biggest daily challenges?</div>
+                <div class="question-note">(Identifies priority tasks to gamify—e.g., brushing teeth, transitions, mealtime.)</div>
+                <textarea name="daily_challenges" required></textarea>
+              </div>
+              
+              <!-- Question 2 -->
+              <div class="form-group">
+                <div class="question-text">2. What are your child's favorite interests or motivators?</div>
+                <div class="question-note">(Helps embed rewards—e.g., dinosaurs, trains, music, numbers—into the game.)</div>
+                <textarea name="interests_motivators" required></textarea>
+              </div>
+              
+              <!-- Question 3 -->
+              <div class="form-group">
+                <div class="question-text">3. How does your child respond to instructions?</div>
+                <div class="question-note">(Verbal, visual, or physical prompts? Do they need step-by-step breakdowns?)</div>
+                <textarea name="response_to_instructions" required></textarea>
+              </div>
+              
+              <!-- Question 4 -->
+              <div class="form-group">
+                <div class="question-text">4. What sensory sensitivities impact daily tasks?</div>
+                <div class="question-note">(Textures, sounds, or lights that may trigger avoidance—e.g., toothpaste flavors, clothing tags.)</div>
+                <textarea name="sensory_sensitivities" required></textarea>
+              </div>
+              
+              <!-- Question 5 -->
+              <div class="form-group">
+                <div class="question-text">5. What usually helps your child stay calm or focused?</div>
+                <div class="question-note">(Deep pressure, fidget tools, quiet time, or a favorite object?)</div>
+                <textarea name="calming_techniques" required></textarea>
+              </div>
+              
+              <!-- Question 6 -->
+              <div class="form-group">
+                <div class="question-text">6. How does your child handle transitions between activities?</div>
+                <div class="question-note">(Does a timer, visual schedule, or warning help?)</div>
+                <textarea name="transitions" required></textarea>
+              </div>
+              
+              <!-- Question 7 -->
+              <div class="form-group">
+                <div class="question-text">7. What rewards or reinforcements work best?</div>
+                <div class="question-note">(Stickers, screen time, praise, sensory breaks, or tangible rewards?)</div>
+                <textarea name="rewards" required></textarea>
+              </div>
+              
+              <!-- Question 8 -->
+              <div class="form-group">
+                <div class="question-text">8. Does your child understand sequences (e.g., steps to wash hands)?</div>
+                <div class="question-note">(May need in-game progress tracking or interactive guides.)</div>
+                <textarea name="sequence_understanding" required></textarea>
+              </div>
+              
+              <!-- Question 9 -->
+              <div class="form-group">
+                <div class="question-text">9. What's their attention span for structured tasks?</div>
+                <div class="question-note">(Determines game length—short bursts or longer missions?)</div>
+                <textarea name="attention_span" required></textarea>
+              </div>
+              
+              <!-- Question 10 -->
+              <div class="form-group">
+                <div class="question-text">10. What's one skill you'd love your child to master independently?</div>
+                <div class="question-note">(Focuses the game on a meaningful goal for the family.)</div>
+                <textarea name="desired_skill" required></textarea>
+              </div>
+              
+              <a href="./lastpage.html" class="submit-btn">Submit</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Additional animation for logo on hover
+    const logo = document.querySelector('.logo-img');
+    logo.addEventListener('mouseover', () => {
+      logo.style.animation = 'pulse 0.5s infinite alternate';
+    });
+    logo.addEventListener('mouseout', () => {
+      logo.style.animation = 'pulse 2s infinite alternate';
+    });
+
+    // Form submission handling
+    document.getElementById('autismQuestionnaire').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for completing the questionnaire! This information will help us personalize the Autism Allies game for your child.');
+      // In a real implementation, you would add code here to process/save the form data
+    });
+  </script>
+</body>
+</html>

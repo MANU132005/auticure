@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn More - AutiCure</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Background matching main page */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://www.itl.cat/pngfile/big/47-470148_landscape-portrait-colorful-background-iphone.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: blur(10px);
+      z-index: -2;
+    }
+    
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 20px;
+      z-index: 1001;
+      display: flex;
+      gap: 20px;
+    }
+
+    .top-nav a {
+      color: rgb(228, 228, 206);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .top-nav a:hover {
+      color: #4CAF50;
+      transform: translateY(-2px);
+    }
+
+    /* Logo Container - Matching the main page */
+    .logo-container {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      height: 80px;
+      width: auto;
+      animation: pulse 2s infinite alternate;
+    }
+
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #4CAF50;
+      text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .logo-tagline {
+      font-size: 0.9rem;
+      color: rgb(228, 228, 206);
+      opacity: 0.8;
+    }
+
+    /* Main content area */
+    .main-content {
+      position: relative;
+      z-index: 2;
+      padding: 140px 40px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Animations - Same as main page */
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Page heading */
+    .page-heading {
+      font-size: 2.8rem;
+      color: #4CAF50;
+      margin-bottom: 30px;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+
+    /* Content sections */
+    .content-section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      border-left: 4px solid #4CAF50;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .content-section h2 {
+      color: #4CAF50;
+      margin-top: 0;
+    }
+
+    .content-section p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    /* Back button */
+    .back-button {
+      display: inline-block;
+      background: #4CAF50;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-button:hover {
+      background: #45a049;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Transition curve */
+    .transition-curve {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: #f9f9f9;
+      clip-path: ellipse(100% 100% at 50% 100%);
+      z-index: 1;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .logo-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      .logo-img {
+        height: 65px;
+      }
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      .logo-tagline {
+        font-size: 0.8rem;
+      }
+      .main-content {
+        padding: 120px 20px 40px;
+      }
+      .page-heading {
+        font-size: 2rem;
+      }
+      .top-nav {
+        padding: 15px;
+        gap: 15px;
+      }
+      .content-section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Links -->
+  <div class="top-nav">
+    <a href="#signin"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+    <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+    <a href="#getapp"><i class="fas fa-mobile-alt"></i> Get App</a>
+  </div>
+
+  <!-- Logo Container at Top Left - Matching main page -->
+  <div class="logo-container">
+    <img src="./AutiCure_Logo-removebg-preview.png" alt="AutiCure Logo" class="logo-img">
+    <div>
+      <div class="logo-text">AutiCure</div>
+      <div class="logo-tagline">Supporting Autism Spectrum</div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <h1 class="page-heading">Learn More About AutiCure</h1>
+    
+    <div class="content-section">
+      <h2>Our Approach to Autism Support</h2>
+      <p>AutiCure takes a comprehensive approach to supporting individuals with autism spectrum disorder (ASD). Our methodology combines evidence-based therapeutic techniques with engaging digital experiences to create meaningful developmental progress.</p>
+      <p>We understand that each individual with autism is unique, which is why all our solutions are highly customizable to meet specific needs, preferences, and sensory profiles.</p>
+    </div>
+    
+    <div class="content-section">
+      <h2>The Science Behind Our Solutions</h2>
+      <p>Our programs are developed in collaboration with leading autism researchers and therapists. We incorporate:</p>
+      <ul>
+        <li>Applied Behavior Analysis (ABA) principles</li>
+        <li>Sensory integration techniques</li>
+        <li>Social skills development frameworks</li>
+        <li>Visual learning strategies</li>
+        <li>Positive reinforcement methodologies</li>
+      </ul>
+      <p>This multidisciplinary approach ensures our tools are both clinically sound and practically effective.</p>
+    </div>
+    
+    <div class="content-section">
+      <h2>Autism Allies Game Features</h2>
+      <p>Our flagship product, Autism Allies, offers a range of specialized features:</p>
+      <ul>
+        <li><strong>Customizable Environments:</strong> Adjust lighting, colors, sounds and complexity levels</li>
+        <li><strong>Skill-Building Activities:</strong> Designed to target specific developmental areas</li>
+        <li><strong>Progress Tracking:</strong> Detailed reports on skill acquisition and behavioral changes</li>
+        <li><strong>Safe Space:</strong> Controlled environment free from unexpected sensory triggers</li>
+        <li><strong>Therapist Dashboard:</strong> Tools for professionals to monitor and adjust programs</li>
+      </ul>
+    </div>
+    
+    <div class="content-section">
+      <h2>Getting Started with AutiCure</h2>
+      <p>Beginning your journey with AutiCure is simple:</p>
+      <ol>
+        <li>Complete our free assessment to identify needs and preferences</li>
+        <li>Work with our team to customize your experience</li>
+        <li>Access our digital platform through web or mobile app</li>
+        <li>Track progress and adjust settings as needed</li>
+      </ol>
+      <p>We offer guidance every step of the way to ensure optimal results.</p>
+    </div>
+    
+    <a href="./mainpage.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
+
+  <script>
+    // Logo animation - same as main page
+    const logo = document.querySelector('.logo-img');
+    logo.addEventListener('mouseover', () => {
+      logo.style.animation = 'pulse 0.5s infinite alternate';
+    });
+    logo.addEventListener('mouseout', () => {
+      logo.style.animation = 'pulse 2s infinite alternate';
+    });
+  </script>
+</body>
+</html>
